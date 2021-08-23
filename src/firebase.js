@@ -3,7 +3,6 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 
 
-
   firebase.initializeApp(
     {
         apiKey: "AIzaSyDUW1kmDuA1j6mEAUm7adnDOTi9J9cQgr4",
