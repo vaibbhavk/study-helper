@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
 import './App.css';
+import Main from './components/Main';
 
 function App() {
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Typography component="div" style={{ backgroundColor: '#fafafa', height: '100vh' }} >
+          <div className="main">
+            <Main/>
+          </div>
+        </Typography>
+      </Container>
+    </React.Fragment>
   );
 }
 
