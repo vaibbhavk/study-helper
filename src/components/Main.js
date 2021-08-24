@@ -16,6 +16,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
 
 const Main = () => {
+  
   const [subjectList, setSubjectList] = useState({});
   const [topicList, setTopicList] = useState({});
   const [noteList, setNoteList] = useState({});
@@ -39,7 +40,7 @@ const Main = () => {
   const [editTopicText, setEditTopicText] = useState("");
   const [editNoteText, setEditNoteText] = useState("");
 
-  // get data when the page loads
+  // get subjects data when the page loads, and store it in subjectList object {document_id: document_field_name}.
   useEffect(() => {
     db.collection("Subject").onSnapshot((querySnapshot) => {
       var arr = {};
@@ -50,6 +51,7 @@ const Main = () => {
     });
   }, []);
 
+  // adds a new document (with auto generated id) to the "Subject" collection.
   const handleAddSubject = () => {
     db.collection("Subject")
       .add({
@@ -65,6 +67,7 @@ const Main = () => {
     setAddSubjectText("");
   };
 
+  // adds a new document (with auto generated id) to the "Topics" collection.
   const handleAddTopic = () => {
     db.collection("Subject")
       .doc(`${currentSubId}`)
@@ -81,6 +84,7 @@ const Main = () => {
     setAddTopicText("");
   };
 
+  // adds a new document (with auto generated id) to the "Notes" collection.
   const handleAddNote = (e) => {
     db.collection("Subject")
       .doc(`${e.sub}`)
@@ -99,6 +103,7 @@ const Main = () => {
     setAddNoteText("");
   };
 
+  // get topics data when the "Topics" button is clicked, and store it in topicList object {document_id: document_field_name}.
   const handleTopicClick = (e) => {
     const subRef = e.sub;
     setCurrentSubId(subRef);
@@ -115,6 +120,7 @@ const Main = () => {
       });
   };
 
+  // get notes data when the "Notes" button is clicked, and store it in noteList object {document_id: document_field_name}.
   const handleNoteClick = (e) => {
     const topicRef = e.topic;
     const subRef = e.sub;
@@ -135,22 +141,27 @@ const Main = () => {
       });
   };
 
+  // helper to set the current subject document id.
   const handleSubjectEditClick = (e) => {
     setCurrentSubId(e.sub);
   };
 
+  // helper to set the current topic document id.
   const handleTopicEditClick = (e) => {
     setCurrentTopicId(e.topic);
   };
 
+  // helper to set the current note document id.
   const handleNoteEditClick = (e) => {
     setCurrentNoteId(e.note);
   };
 
+  // helper to set the current note document id.
   const handleNoteDeleteClick = (e) => {
     setCurrentNoteId(e.note);
   };
 
+  // helper to set the current topic document id.
   const handleTopicDeleteClick = (e) => {
     setCurrentTopicId(e.topic);
   };
