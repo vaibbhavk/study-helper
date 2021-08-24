@@ -268,7 +268,7 @@ const Main = () => {
   return (
     <div>
       <div className="sub">
-        <h3>Subjects</h3>
+        <h2>Subjects</h2>
         <TextField
           id="outlined-basic"
           label="Add subject"
