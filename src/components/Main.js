@@ -14,6 +14,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import SaveIcon from "@material-ui/icons/Save";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 const Main = () => {
   
@@ -42,7 +44,7 @@ const Main = () => {
 
   // get subjects data when the page loads, and store it in subjectList object {document_id: document_field_name}.
   useEffect(() => {
-    db.collection("Subject").onSnapshot((querySnapshot) => {
+    db.collection("Subject").orderBy('time', 'desc').onSnapshot((querySnapshot) => {
       var arr = {};
       querySnapshot.forEach((doc) => {
         arr[doc.id] = doc.data().name;
@@ -56,6 +58,7 @@ const Main = () => {
     db.collection("Subject")
       .add({
         name: `${addSubjectText}`,
+        time: firebase.firestore.FieldValue.serverTimestamp()
       })
       .then(() => {
         console.log("Document successfully written!");
